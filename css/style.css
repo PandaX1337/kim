@@ -19,7 +19,7 @@ body {
   background: #000;
   width: 12000px;
   height: 12000px;
-  cursor: none;
+  border: 2px solid #444;
   transform-origin: 0 0;
 }
 
