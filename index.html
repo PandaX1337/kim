@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>Dark Pixel Art</title>
+  <link rel="icon" href="assets/favicon.ico">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="social-banner">
+    <div class="message">Это пространство для творчества! Помогите сохранить его чистым.</div>
+    <div class="rules">
+      <span>✓ Не рисуйте оскорбительные символы</span>
+      <span>✓ Уважайте работу других</span>
+    </div>
+  </div>
+
+  <canvas id="pixelCanvas"></canvas>
+  
+  <div class="toolbar">
+    <div class="tool-section">
+      <button id="brushBtn" class="active" aria-label="Кисть">
+        <img src="assets/icons/brush-white.png" alt="Кисть" width="24">
+      </button>
+      <button id="eraserBtn" aria-label="Ластик">
+        <img src="assets/icons/eraser-white.png" alt="Ластик" width="24">
+      </button>
+    </div>
+    
+    <div class="tool-section">
+      <input type="range" id="brushSize" min="1" max="4" value="1">
+      <span id="sizeValue">1x1</span>
+    </div>
+    
+    <div class="tool-section">
+      <input type="color" id="colorPicker" value="#FF0000">
+    </div>
+  </div>
+
+  <script src="js/main.js" type="module"></script>
+</body>
+</html>
