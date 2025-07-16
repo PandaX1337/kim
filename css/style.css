@@ -1,8 +1,8 @@
 :root {
-  --bg-dark: #121212;
+  --bg-dark: #ffffff;
   --toolbar-bg: #1E1E1E;
   --text-light: #E0E0E0;
-  --accent-red: #FF3B30;
+  --accent-red: #000000;
 }
 
 body {
