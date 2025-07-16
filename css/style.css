@@ -10,13 +10,13 @@ body {
   overflow: hidden;
   touch-action: none;
   font-family: 'Arial', sans-serif;
-  background: #000;
+  background: #ffffff;
   color: var(--text-light);
 }
 
 #pixelCanvas {
   display: block;
-  background: #fff;
+  background: #000000;
   border: 2px solid #444;
   width: 12000px;
   height: 12000px;
