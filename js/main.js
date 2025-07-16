@@ -8,12 +8,35 @@ let scale = 1;
 let offsetX = 0, offsetY = 0;
 let lastPoint = null;
 
-// Инициализация
-function init() {
-  setupCanvas();
-  setupTools();
-  setupZoom();
-  setupDrawing();
+// --- Firebase config ---
+const firebaseConfig = {
+  apiKey: "AIzaSyAIWp63XWutRG4ZrRnSHEe57JtkB3xyj1o",
+  authDomain: "paint-5496f.firebaseapp.com",
+  databaseURL: "https://paint-5496f-default-rtdb.europe-west1.firebasedatabase.app/",
+  projectId: "paint-5496f",
+  storageBucket: "paint-5496f.firebasestorage.app",
+  messagingSenderId: "51632467935",
+  appId: "1:51632467935:web:d7681eae239ae9e5331e6a",
+  measurementId: "G-JPVHNEV5JR"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.database();
+
+db.ref('drawings').on('child_added', (snapshot) => {
+  const {from, to, color, size, tool} = snapshot.val();
+  ctx.beginPath();
+  ctx.moveTo(from.x, from.y);
+  ctx.lineTo(to.x, to.y);
+  ctx.strokeStyle = tool === 'brush' ? color : 'black';
+  ctx.lineWidth = size * 2;
+  ctx.lineCap = 'round';
+  ctx.stroke();
+});
+
+function syncDraw(from, to, color, size, tool) {
+  db.ref('drawings').push({
+    from, to, color, size, tool, ts: Date.now()
+  });
 }
 
 // Холст
@@ -145,6 +168,7 @@ function setupDrawing() {
     }
     const pt = getCanvasCoordinates(e);
     drawLine(lastPoint, pt);
+    syncDraw(lastPoint, pt, currentColor, brushSize, currentTool);
     lastPoint = pt;
     setCustomCursor(pt.clientX, pt.clientY);
     if (e.touches) showTouchCursor(pt.clientX, pt.clientY);
